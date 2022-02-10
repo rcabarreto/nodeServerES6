@@ -1,9 +1,9 @@
-import { Sequelize } from "sequelize";
-import path from "path";
-import fs from "fs";
+import { Sequelize } from 'sequelize';
+import path from 'path';
+import fs from 'fs';
 
 const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || 'development';
 const config = require(`${__dirname}/../../config/config.json`)[env];
 
 const db = {};
@@ -16,16 +16,13 @@ const db = {};
 // }
 
 const sequelize = new Sequelize(undefined, undefined, undefined, {
-  dialect: "sqlite",
-  storage: path.join(__dirname, "../../", "/data/test.sqlite"),
+  dialect: 'sqlite',
+  storage: path.join(__dirname, '../../', '/data/test.sqlite'),
   logging: console.log,
 });
 
 fs.readdirSync(__dirname)
-  .filter(
-    (file) =>
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-  )
+  .filter((file) => file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js')
   .forEach((file) => {
     console.log(file);
     const model = sequelize.import(path.join(__dirname, file));
